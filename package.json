@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "End to End app which is built using HTML CSS  Bootstrap Javascript Nodejs Express",
   "main": "index.js",
-  "scripts": {
-    "type": "module",
+  "type": "module",
+  "scripts": { 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

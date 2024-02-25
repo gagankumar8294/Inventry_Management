@@ -1,5 +1,5 @@
 import express from 'express';
-import ProductController from './src/controllers/product.controller';
+import  ProductController  from './src/controllers/product.controller.js';
 
 
 const server = express();
