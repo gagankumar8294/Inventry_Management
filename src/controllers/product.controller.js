@@ -1,10 +1,10 @@
-const path = require('path');
+import path from 'path';
 
-class ProductController {
+export default class ProductController {
     getProducts(req, res){
         return res.sendFile(path.join(path.resolve(), 'src','views','products.html'))
     }
 }
 
 
-module.exports = ProductController;
+// module.exports = ProductController;

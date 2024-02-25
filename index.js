@@ -1,5 +1,5 @@
-const express = require('express');
-const ProductController = require('./src/controllers/product.controller.js');
+import express from 'express';
+import ProductController from './src/controllers/product.controller';
 
 
 const server = express();

@@ -4,6 +4,7 @@
   "description": "End to End app which is built using HTML CSS  Bootstrap Javascript Nodejs Express",
   "main": "index.js",
   "scripts": {
+    "type": "module",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
