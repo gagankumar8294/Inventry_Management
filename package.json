@@ -4,12 +4,13 @@
   "description": "End to End app which is built using HTML CSS  Bootstrap Javascript Nodejs Express",
   "main": "index.js",
   "type": "module",
-  "scripts": { 
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.9",
     "express": "^4.18.2"
   }
 }
