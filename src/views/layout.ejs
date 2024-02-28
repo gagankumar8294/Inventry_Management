@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -33,38 +33,11 @@
             </div>
         </div>
     </nav>
-    <div class="container"> -->
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Image</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- wrap this table in a foreach loop -->
-                <!-- we receive PRODUCTS array -->
-                <% products.forEach(product=>{ %>
-                    <!-- we receive data inside this product -->
-                    <!-- this product going to point to single record inside that array of products -->
-                   <!-- with that we can access id , name , desc , ...-->
-                    <tr>
-                    <th><%= product.id %></th>
-                    <td><%= product.name %></td>
-                    <td><%= product.description %></td>
-                    <td scope="col"><%= product.price %></td>
-                    <td>
-                        <img src="<%= product.imageUrl %>" />
-                    </td>
-                   </tr> 
-                <% }) %>
-                
-            </tbody>
-        </table>
-    <!-- </div>
+    <div class="container">
+        <!-- placeholder for rendering other ejs views-->
+        <%-body%>
+
+    </div>
 </body>
 
-</html> -->
+</html>

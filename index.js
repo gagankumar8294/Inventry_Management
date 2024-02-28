@@ -1,5 +1,6 @@
 import express from 'express';
 import  ProductController  from './src/controllers/product.controller.js';
+import expressEjsLayouts from 'express-ejs-layouts';
 import path from 'path';
 
 const server = express();
@@ -8,6 +9,7 @@ const server = express();
 server.set("view engine", "ejs");
 server.set("views", path.join(path.resolve(), 'src', 'views'));
 
+server.use(expressEjsLayouts);
 // calling a method belongs to class
 // create a instance fot the class / ProductController
 
