@@ -2,7 +2,7 @@ import express from 'express';
 import  ProductController  from './src/controllers/product.controller.js';
 import expressEjsLayouts from 'express-ejs-layouts';
 import path from 'path';
-
+import validateRequest from './src/middlewares/validation.middleware.js';
 const server = express();
 
 //parse form data
@@ -23,7 +23,7 @@ const productController = new ProductController();
 server.get('/', productController.getProducts);
 server.get('/addproduct', productController.getAddForm);
 // because form post to root "/"
-server.post('/', productController.addProduct);
+server.post('/', validateRequest, productController.addProduct);
 
 server.use(express.static('src/views'))
 
