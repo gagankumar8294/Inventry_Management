@@ -24,10 +24,19 @@ export default class ProductController {
     addProduct(req, res){
         // access data from form
         console.log(req.body);
-        // let products = productMode.get();
+         //we are adding all the propperties which we take from the user 
+        // like name , desc ...
+        ProductModel.add(req.body)
+       
+        //after that we are retriving the products
+        // updated array from the model
+        let products = ProductModel.get();
+        
         // after user successfully added product
         // redirect the user to products page
-        res.render('products',{ products: products})
+
+        // returning the templet and data products
+        return res.render("products", { products })
     }
 }
 

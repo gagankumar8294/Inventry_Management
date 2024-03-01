@@ -13,6 +13,21 @@ export default class ProductModel {
     static get() {
         return products;
     }
+
+    // new function to add products
+    static add(productObj){
+      // to auto generate the id by model by excluding existing id count
+      let newProduct = new ProductModel(
+        // array of data to add to the newProduct
+        products.length+1,
+        productObj.name, 
+        productObj.description,
+        productObj.price, 
+        productObj.imageUrl,
+      );
+      // pushing all the products here
+      products.push(newProduct);
+    }
 }
 
 var products = [

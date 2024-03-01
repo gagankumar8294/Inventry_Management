@@ -5,6 +5,11 @@ import path from 'path';
 
 const server = express();
 
+//parse form data
+// it will take the data received from the form 
+// parse(convert) it and store it in the "body"
+server.use(express.urlencoded({ extended: true }));
+
 // setup view engine settings
 server.set("view engine", "ejs");
 server.set("views", path.join(path.resolve(), 'src', 'views'));
