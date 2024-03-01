@@ -15,7 +15,10 @@ server.use(expressEjsLayouts);
 
 const productController = new ProductController();
 
-server.get('/', productController.getProducts)
+server.get('/', productController.getProducts);
+server.get('/addproduct', productController.getAddForm);
+// because form post to root "/"
+server.post('/', productController.addProduct);
 
 server.use(express.static('src/views'))
 

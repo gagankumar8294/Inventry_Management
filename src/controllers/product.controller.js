@@ -12,6 +12,23 @@ export default class ProductController {
         // & data in key value pair
         res.render("products", {products:products})
     }
+
+    // render the form when navigated to /addproducts
+    // need to call this from index.js
+    getAddForm(req, res){
+        return res.render("new-product"); // data is optional
+    }
+
+    // Another Controling method
+    // To receive data when form is submitted 
+    addProduct(req, res){
+        // access data from form
+        console.log(req.body);
+        // let products = productMode.get();
+        // after user successfully added product
+        // redirect the user to products page
+        res.render('products',{ products: products})
+    }
 }
 
 
