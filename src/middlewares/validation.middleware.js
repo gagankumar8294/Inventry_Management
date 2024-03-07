@@ -1,26 +1,29 @@
+import { body, validationResult } from 'express-validator';
+
 // export default it expects 3 things
 // HoistedDeclearation => a function | it takes this | function with function keyword not arrow function
 // Class 
 // asignment expression
 
-const validateRequest = (req, res, next) => {
+const validateRequest = async (req, res, next) => {
         
-    const { name, price, imageUrl } = req.body;
-    let errors=[];
-    if(!name || name.trim()==''){
-        errors.push("Name is required");
-    }
-    if(!price || parseFloat(price)<1){
-        errors.push("Price must be a positive value");
-    }
-    try{
-        const valiURl = new URLSearchParams(imageUrl)
-    } catch(err){
-        errors.push("URL is invalid");
-    }
-    if (errors.length > 0){
+    //Replacing validation code with Express validator code
+    // 1. Setup rules for validtion.
+    const rules = [
+        body('name').notEmpty().withMessage("Name is required"),
+        body('price').isFloat({gt: 0}).withMessage("Price should be a valid numer"),
+        body('imageUrl').isURL().withMessage('Invalid url'), 
+    ]
+    // 2. run those rules
+    await Promise.all(rules.map(rule => rule.run(req)));
+    
+    // 3. Check if there are any errors after running the rules.
+    var validationErrors = validationResult(req);
+
+    // 4. if errors, return the error message
+    if (!validationErrors.isEmpty()) {
         return res.render('new-product', {
-            errorMessage: errors[0],
+            errorMessage: validationErrors.array()[0].msg,
         });
     }
     // it will all the conditions
