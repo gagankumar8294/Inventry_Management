@@ -9,7 +9,7 @@ export default class ProductController {
         
         // have to specify name of the templete
         // render function accrpts name of the templete[products]  & data in key value pair
-        res.render("products", {products:products})
+        res.render("index", {products:products})
     }
 
     // render the form when navigated to /addproducts need to call this from index.js
@@ -28,7 +28,7 @@ export default class ProductController {
         //after that we are retriving the products updated array from the model
         var products = ProductModel.get(); 
         // after user successfully added product redirect the user to products page returning the templet and data products
-        res.render("products", { products })
+        res.render("index", { products })
     }
 }
 
