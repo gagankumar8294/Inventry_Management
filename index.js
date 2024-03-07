@@ -22,6 +22,9 @@ const productController = new ProductController();
 
 server.get('/', productController.getProducts);
 server.get('/addproduct', productController.getAddForm);
+server.get('/update-product/:id', productController.getUpdateProductView);
+
+server.post('/update-product', productController.postUpdateProduct)
 // because form post to root "/"
 server.post('/', validateRequest, productController.addProduct);
 

@@ -14,6 +14,13 @@ export default class ProductModel {
         return products;
     }
 
+    static update(productObj){
+      const index = products.findIndex(
+      (p) => p.id == productObj.id
+      );
+    products[index] = productObj;
+    }
+
     // new function to add products
     static add(productObj){
       // to auto generate the id by model by excluding existing id count
@@ -27,6 +34,11 @@ export default class ProductModel {
       );
       // pushing all the products here
       products.push(newProduct);
+    }
+    //update the product
+    // returning product id if the product is already exist
+    static getById(id) {
+      return products.find((p) => p.id == id);
     }
 }
 
