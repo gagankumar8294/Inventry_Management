@@ -23,6 +23,7 @@ const productController = new ProductController();
 server.get('/', productController.getProducts);
 server.get('/addproduct', productController.getAddForm);
 server.get('/update-product/:id', productController.getUpdateProductView);
+server.get('/delete-product/:id', productController.deleteProduct);
 
 server.post('/update-product', productController.postUpdateProduct)
 // because form post to root "/"

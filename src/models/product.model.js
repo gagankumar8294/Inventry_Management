@@ -21,6 +21,11 @@ export default class ProductModel {
     products[index] = productObj;
     }
 
+    static delete(id){
+      const index = products.findIndex(p =>p.id == id);
+      products.splice(index, 1);
+    }
+
     // new function to add products
     static add(productObj){
       // to auto generate the id by model by excluding existing id count

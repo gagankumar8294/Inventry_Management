@@ -50,6 +50,17 @@ export default class ProductController {
         // after user successfully added product redirect the user to products page returning the templet and data products
         res.render("index", { products })
     }
+
+    deleteProduct(req, res, next){
+        const id = req.params.id;
+        const productFound = ProductModel.getById(id);
+        if(!productFound) {
+            return res.status(401).send('product not found');
+        }
+        ProductModel.delete(id);
+        var products = ProductModel.get();
+        res.render('index', { products });
+    }
 }
 
 
