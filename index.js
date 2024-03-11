@@ -17,17 +17,19 @@ server.set("views", path.join(path.resolve(), 'src', 'views'));
 server.use(expressEjsLayouts);
 // calling a method belongs to class
 // create a instance fot the class / ProductController
+server.use(express.static('public'));
 
 const productController = new ProductController();
 
 server.get('/', productController.getProducts);
 server.get('/addproduct', productController.getAddForm);
 server.get('/update-product/:id', productController.getUpdateProductView);
-server.get('/delete-product/:id', productController.deleteProduct);
+server.post('/delete-product/:id', productController.deleteProduct);
 
 server.post('/update-product', productController.postUpdateProduct)
 // because form post to root "/"
 server.post('/', validateRequest, productController.addProduct);
+
 
 server.use(express.static('src/views'))
 
