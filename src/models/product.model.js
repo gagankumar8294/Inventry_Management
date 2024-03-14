@@ -27,15 +27,15 @@ export default class ProductModel {
     }
 
     // new function to add products
-    static add(productObj){
+    static add(name, description, price, imageUrl){
       // to auto generate the id by model by excluding existing id count
       let newProduct = new ProductModel(
         // array of data to add to the newProduct
         products.length+1,
-        productObj.name, 
-        productObj.description,
-        productObj.price, 
-        productObj.imageUrl,
+        name, 
+        description,
+        price, 
+        imageUrl,
       );
       // pushing all the products here
       products.push(newProduct);

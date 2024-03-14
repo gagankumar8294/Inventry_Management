@@ -39,12 +39,14 @@ export default class ProductController {
 
     // Another Controling method To receive data when form is submitted 
     addProduct(req, res, next){
+        const {name, desc, price} = req.body;
+        const imageUrl = 'images/'+ req.file.filename
         // access data from form
          //we are adding all the propperties which we take from the user like name , desc ...
         
          // before we pasiing data to the model | Validate
         
-         ProductModel.add(req.body)
+         ProductModel.add(name, desc, price, imageUrl);
         //after that we are retriving the products updated array from the model
         var products = ProductModel.get(); 
         // after user successfully added product redirect the user to products page returning the templet and data products

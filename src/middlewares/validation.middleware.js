@@ -6,13 +6,19 @@ import { body, validationResult } from 'express-validator';
 // asignment expression
 
 const validateRequest = async (req, res, next) => {
-        
+    console.log(req.body);
     //Replacing validation code with Express validator code
     // 1. Setup rules for validtion.
     const rules = [
         body('name').notEmpty().withMessage("Name is required"),
         body('price').isFloat({gt: 0}).withMessage("Price should be a valid numer"),
-        body('imageUrl').isURL().withMessage('Invalid url'), 
+        // body('imageUrl').isURL().withMessage('Invalid url'), 
+        body('imageUrl').custom((value, { req }) => {
+            if (!req.file){
+                throw new Error('Image is required');
+            }
+            return true;
+        }),
     ]
     // 2. run those rules
     await Promise.all(rules.map(rule => rule.run(req)));
