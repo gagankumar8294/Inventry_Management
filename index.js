@@ -1,5 +1,5 @@
 import express from 'express';
-import  ProductController  from './src/controllers/product.controller.js';
+import ProductController  from './src/controllers/product.controller.js';
 import expressEjsLayouts from 'express-ejs-layouts';
 import path from 'path';
 import validateRequest from './src/middlewares/validation.middleware.js';
@@ -35,9 +35,10 @@ const usersController = new UserController();
 server.get('/', auth, productController.getProducts);
 server.get('/addproduct', auth, productController.getAddForm);
 server.get('/update-product/:id', auth, productController.getUpdateProductView);
-server.post('/delete-product/:id',auth, productController.deleteProduct);
 server.get('/register', usersController.getRegister);
 server.get('/login', usersController.getLogin);
+server.get('/logout', usersController.logout);
+server.post('/delete-product/:id',auth, productController.deleteProduct);
 server.post('/login', usersController.postLogin);
 server.post('/register', usersController.postRegister);
 server.post('/update-product',auth, productController.postUpdateProduct)

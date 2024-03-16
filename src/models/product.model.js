@@ -8,8 +8,6 @@ export default class ProductModel {
         this.imageUrl = _imageUrl;
     }
 
-    // static methods are the methods which don't need your classes to be instantiated
-    // you can directly call them using class name
     static get() {
         return products;
     }
@@ -22,7 +20,7 @@ export default class ProductModel {
     }
 
     static delete(id){
-      const index = products.findIndex(p =>p.id == id);
+      const index = products.findIndex((p) =>p.id == id);
       products.splice(index, 1);
     }
 
