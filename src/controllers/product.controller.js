@@ -4,20 +4,13 @@ import ProductModel from '../models/product.model.js';
 export default class ProductController {
     getProducts(req, res, next){
         var products = ProductModel.get();
-        // console.log(products);
-        // return res.sendFile(path.join(path.resolve(), 'src','views','products.html'));
-        
-        // have to specify name of the templete
-        // render function accrpts name of the templete[products]  & data in key value pair
         res.render("index", { products })
     }
 
-    // render the form when navigated to /addproducts need to call this from index.js
     getAddForm(req, res){
         return res.render("new-product", {errorMessage:null}); // data is optional
     }
 
-    // 
     getUpdateProductView(req, res){
         // 1. if product existes then 
         const id = req.params.id; // reading product id from the body

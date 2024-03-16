@@ -7,22 +7,15 @@ import UserController from './src/controllers/user.controller.js';
 import { uploadFile } from './src/middlewares/file-upload.middleware.js';
 const server = express();
 
-//parse form data
-// it will take the data received from the form 
-// parse(convert) it and store it in the "body"
 server.use(express.urlencoded({ extended: true }));
 
-// setup view engine settings
 server.set("view engine", "ejs");
 server.set("views", path.join(path.resolve(), 'src', 'views'));
 
 server.use(expressEjsLayouts);
-// calling a method belongs to class
-// create a instance fot the class / ProductController
 server.use(express.static('public'));
 
 const productController = new ProductController();
-
 const usersController = new UserController();
 
 server.get('/', productController.getProducts);
@@ -30,8 +23,10 @@ server.get('/addproduct', productController.getAddForm);
 server.get('/update-product/:id', productController.getUpdateProductView);
 server.post('/delete-product/:id', productController.deleteProduct);
 server.get('/register', usersController.getRegister);
+server.get('/login', usersController.getLogin);
+server.post('/login', usersController.postLogin);
+server.post('/register', usersController.postRegister);
 server.post('/update-product', productController.postUpdateProduct)
-// because form post to root "/"
 server.post('/', uploadFile.single('imageUrl'),validateRequest, productController.addProduct);
 
 
