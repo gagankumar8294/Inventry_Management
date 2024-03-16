@@ -3,6 +3,7 @@ import  ProductController  from './src/controllers/product.controller.js';
 import expressEjsLayouts from 'express-ejs-layouts';
 import path from 'path';
 import validateRequest from './src/middlewares/validation.middleware.js';
+import UserController from './src/controllers/user.controller.js';
 import { uploadFile } from './src/middlewares/file-upload.middleware.js';
 const server = express();
 
@@ -22,11 +23,13 @@ server.use(express.static('public'));
 
 const productController = new ProductController();
 
+const usersController = new UserController();
+
 server.get('/', productController.getProducts);
 server.get('/addproduct', productController.getAddForm);
 server.get('/update-product/:id', productController.getUpdateProductView);
 server.post('/delete-product/:id', productController.deleteProduct);
-
+server.get('/register', usersController.getRegister);
 server.post('/update-product', productController.postUpdateProduct)
 // because form post to root "/"
 server.post('/', uploadFile.single('imageUrl'),validateRequest, productController.addProduct);
