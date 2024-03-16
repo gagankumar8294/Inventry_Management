@@ -5,7 +5,21 @@ import path from 'path';
 import validateRequest from './src/middlewares/validation.middleware.js';
 import UserController from './src/controllers/user.controller.js';
 import { uploadFile } from './src/middlewares/file-upload.middleware.js';
+import session from 'express-session';
+import { auth } from './src/middlewares/auth.middleware.js';
+
 const server = express();
+
+
+//sessions
+server.use(
+    session({
+        secret: 'SecretKey',
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: false },
+    })
+)
 
 server.use(express.urlencoded({ extended: true }));
 
@@ -18,16 +32,16 @@ server.use(express.static('public'));
 const productController = new ProductController();
 const usersController = new UserController();
 
-server.get('/', productController.getProducts);
-server.get('/addproduct', productController.getAddForm);
-server.get('/update-product/:id', productController.getUpdateProductView);
-server.post('/delete-product/:id', productController.deleteProduct);
+server.get('/', auth, productController.getProducts);
+server.get('/addproduct', auth, productController.getAddForm);
+server.get('/update-product/:id', auth, productController.getUpdateProductView);
+server.post('/delete-product/:id',auth, productController.deleteProduct);
 server.get('/register', usersController.getRegister);
 server.get('/login', usersController.getLogin);
 server.post('/login', usersController.postLogin);
 server.post('/register', usersController.postRegister);
-server.post('/update-product', productController.postUpdateProduct)
-server.post('/', uploadFile.single('imageUrl'),validateRequest, productController.addProduct);
+server.post('/update-product',auth, productController.postUpdateProduct)
+server.post('/',auth, uploadFile.single('imageUrl'),validateRequest, productController.addProduct);
 
 
 server.use(express.static('src/views'))
