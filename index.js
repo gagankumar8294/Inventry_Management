@@ -13,7 +13,7 @@ import { setLastVisit } from './src/middlewares/lastVisit.middleware.js';
 const server = express();
 
 server.use(cookieParser());
-server.use(setLastVisit);
+
 
 //sessions
 server.use(
@@ -36,7 +36,7 @@ server.use(express.static('public'));
 const productController = new ProductController();
 const usersController = new UserController();
 
-server.get('/', auth, productController.getProducts);
+server.get('/',server.use(setLastVisit), auth, productController.getProducts);
 server.get('/addproduct', auth, productController.getAddForm);
 server.get('/update-product/:id', auth, productController.getUpdateProductView);
 server.get('/register', usersController.getRegister);
